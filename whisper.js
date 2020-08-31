@@ -65,8 +65,14 @@ setInterval( async function listen() {
         process.exit();
     }
 
-    keyPair1 = await whipserWeb3.shh.addPrivateKey('0x29d295b652252257efc1dc1c5c323d9a287da1feffe079818a90e14bd75f0765');
+    /* keyPair1 = await whipserWeb3.shh.addPrivateKey('0x29d295b652252257efc1dc1c5c323d9a287da1feffe079818a90e14bd75f0765');
     await whipserWeb3.shh.hasKeyPair(keyPair1);
+    pubKey1 = await whipserWeb3.shh.getPublicKey(keyPair1);
+    console.log(pubKey1); */
+
+    keyPair1 = await whipserWeb3.shh.newKeyPair();
+
+    //Obtain public key
     pubKey1 = await whipserWeb3.shh.getPublicKey(keyPair1);
     console.log(pubKey1);
 
