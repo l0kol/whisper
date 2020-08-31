@@ -59,7 +59,7 @@ setInterval( async function listen() {
 //---------------------------------------------------- WHISPER ------------------------------------------------------
     
     try {
-      whipserWeb3.setProvider(new Web3.providers.WebsocketProvider("ws://localhost:8546"));
+      whipserWeb3.setProvider(new Web3.providers.WebsocketProvider("ws://localhost:8546", {headers: {Origin: "mychat"}}));
         await whipserWeb3.eth.net.isListening();
     } catch(err) {
         process.exit();
