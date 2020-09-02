@@ -104,7 +104,7 @@ async function sendData(web3, pubKey, keyPair, channelTopic, data) {
   await web3.shh.post({
     pubKey: pubKey,
     sig: keyPair,
-    ttl: 20,
+    ttl: 1000,
     topic: channelTopic,
     payload: web3.utils.fromAscii(data),
     powTime: 100,
