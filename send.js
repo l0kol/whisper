@@ -4,7 +4,7 @@ const Web3 = require('web3');
 
 const mongo = require('mongodb');
 const url = "mongodb://localhost:27017";
-
+var moment = require('moment');
 
 // Useful constants
 const DEFAULT_CHANNEL = "warehouse";
@@ -111,7 +111,8 @@ setInterval( async function listen() {
 
       if(obj.id == "offer") {
 
-          t1 = new Date().getTime();
+          //t1 = new Date().getTime();
+          t1 = moment().valueOf()
           var time = t1 - t0;
           OfferAvgTime.push(time);
 
@@ -126,7 +127,8 @@ setInterval( async function listen() {
 
             var dataToSend = JSON.stringify(variables.demand);
 
-            t0 = new Date().getTime();
+            //t0 = new Date().getTime();
+            t0 = moment().valueOf()
             sendData(whisperWeb3,  pubKey11, keyPair2, channelTopic, dataToSend);           
 
           } else {
@@ -162,7 +164,8 @@ setInterval( async function listen() {
 
   var dataToSend = JSON.stringify(variables.demand);
 
-  t0 = new Date().getTime();
+  //t0 = new Date().getTime();
+  t0 = moment().valueOf()
   sendData(whisperWeb3,  pubKey11, keyPair2, channelTopic, dataToSend);
    
 //---------------------------------------------------------------------------------------------------------------------

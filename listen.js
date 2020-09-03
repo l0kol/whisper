@@ -4,7 +4,7 @@
 
 const {performance} = require('perf_hooks');
 
-
+var moment = require('moment');
 const Web3 = require('web3');
 
 
@@ -46,9 +46,9 @@ setInterval( async function listen() {
 
       var obj = JSON.parse(WhisperData);      
 
-      variables.offer.timestamp = new Date().getTime();
-
-      if(obj.id == "demand" && state == 0) {   
+      //variables.offer.timestamp = new Date().getTime();
+      variables.offer.timestamp = moment().valueOf()
+      if(obj.id == "demand") {   
 
           var dataToSend = JSON.stringify(variables.offer);
           sendData(whipserWeb3, pubKey2, keyPair1, channelTopic, dataToSend);
