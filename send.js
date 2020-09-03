@@ -1,7 +1,7 @@
 'use strict'
 const {performance} = require('perf_hooks');
 const Web3 = require('web3');
-
+const date = require('date-and-time');
 const mongo = require('mongodb');
 const url = "mongodb://localhost:27017";
 var moment = require('moment');
@@ -48,7 +48,7 @@ var time1;
 mongo.connect(url, {useNewUrlParser: true}, (err, db) => {
   var db = db.db('meritve');
 
-
+  const now = new Date();
 
 (async () => {
 
@@ -111,9 +111,12 @@ setInterval( async function listen() {
 
       if(obj.id == "offer") {
 
-          //t1 = new Date().getTime();
-          t1 = moment().valueOf()
+          t1 = new Date().getTime();
+          //t1 = moment().valueOf()
+          
+          //t1 = date.format(now, 'SSS');
           var time = t1 - t0;
+
           OfferAvgTime.push(time);
 
           new_data=0;
@@ -127,12 +130,12 @@ setInterval( async function listen() {
 
             var dataToSend = JSON.stringify(variables.demand);
 
-            //t0 = new Date().getTime();
-            t0 = moment().valueOf()
+            t0 = new Date().getTime();
+            //t0 = moment().valueOf()
+            //t0 = date.format(now, 'SSS');
             sendData(whisperWeb3,  pubKey11, keyPair2, channelTopic, dataToSend);           
 
           } else {
-
 
 
              /*  console.log(responseArray)
@@ -164,8 +167,9 @@ setInterval( async function listen() {
 
   var dataToSend = JSON.stringify(variables.demand);
 
-  //t0 = new Date().getTime();
-  t0 = moment().valueOf()
+  t0 = new Date().getTime();
+  //t0 = moment().valueOf();
+  //t0 = date.format(now, 'SSS');
   sendData(whisperWeb3,  pubKey11, keyPair2, channelTopic, dataToSend);
    
 //---------------------------------------------------------------------------------------------------------------------

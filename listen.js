@@ -46,8 +46,8 @@ setInterval( async function listen() {
 
       var obj = JSON.parse(WhisperData);      
 
-      //variables.offer.timestamp = new Date().getTime();
-      variables.offer.timestamp = moment().valueOf()
+      variables.offer.timestamp = new Date().getTime();
+      //variables.offer.timestamp = moment().valueOf()
       if(obj.id == "demand") {   
 
           var dataToSend = JSON.stringify(variables.offer);
