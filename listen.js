@@ -1,9 +1,16 @@
 'use strict'
 
+//Za whisper ukaz v cmd: geth --testnet --syncmode=light --ws --wsorigins=mychat --shh --wsapi=web3,shh,net
+
+const {performance} = require('perf_hooks');
+
+
 const Web3 = require('web3');
 
 
 const whipserWeb3 = new Web3();
+
+var truffleFile = require('./build/contracts/AgreementNode.json');
 
 
 // Useful constants
@@ -40,6 +47,8 @@ setInterval( async function listen() {
 
       var obj = JSON.parse(WhisperData);      
 
+      variables.offer.timestamp = new Date().getTime();
+
       if(obj.id == "demand" && state == 0) {   
 
           var dataToSend = JSON.stringify(variables.offer);
@@ -70,12 +79,6 @@ setInterval( async function listen() {
     pubKey1 = await whipserWeb3.shh.getPublicKey(keyPair1);
     console.log(pubKey1);
 
-    /* keyPair1 = await whipserWeb3.shh.newKeyPair();
-
-    //Obtain public key
-    pubKey1 = await whipserWeb3.shh.getPublicKey(keyPair1);
-    console.log(pubKey1); */
-
 
     
     //Generate a symmetric key
@@ -104,7 +107,7 @@ async function sendData(web3, pubKey, keyPair, channelTopic, data) {
   await web3.shh.post({
     pubKey: pubKey,
     sig: keyPair,
-    ttl: 1000,
+    ttl: 20,
     topic: channelTopic,
     payload: web3.utils.fromAscii(data),
     powTime: 100,
@@ -112,4 +115,3 @@ async function sendData(web3, pubKey, keyPair, channelTopic, data) {
 });
 
 }
-
