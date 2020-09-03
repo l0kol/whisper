@@ -10,7 +10,6 @@ const Web3 = require('web3');
 
 const whipserWeb3 = new Web3();
 
-var truffleFile = require('./build/contracts/AgreementNode.json');
 
 
 // Useful constants
